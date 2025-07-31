@@ -64,7 +64,7 @@ function Footer() {
     <footer className="flex flex-col justify-center items-center bg-purple-gradient text-slate-50 mt-10 px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col items-center gap-4 text-center pt-5 max-w-3xl">
         <h3 className="text-2xl font-bold">ADOCÃO</h3>
-        <p className="text-lg">
+        <p className="text-xl">
           ADOCÃO é um projeto <span className="text-accent">fictício</span>,
           desenvolvido para fins educacionais e de portfólio. Todos os animais e
           informações são <span className="text-accent">simulados</span>.
@@ -72,7 +72,7 @@ function Footer() {
       </div>
 
       {/*main container with navigation, contact and social media links.*/}
-      <div className="flex flex-col md:flex-row justify-center gap-12 md:gap-20 lg:gap-28 w-full max-w-6xl py-8">
+      <div className="flex flex-col md:flex-row justify-center gap-12 md:gap-20 lg:gap-28 w-full max-w-6xl py-10">
         <FooterSection title="Navegação:">
           <nav>
             <ul className="flex flex-col gap-3 items-center md:items-start">
