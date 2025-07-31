@@ -2,7 +2,21 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#8B5CF6",
+        secondary: "#f3EEFD",
+        accent: "#FFA500",
+        light: "#F7F4F9",
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif']
+      },
+      backgroundImage: {
+        'purple-gradient': 'linear-gradient(135deg, #6D28D9, #8B5CF6)',
+      }
+    },
   },
   plugins: [],
 }
