@@ -1,5 +1,6 @@
 import SectionTop from 'components/shared/SectionTop';
 import AboutUsSection from "components/shared/AboutUsSection";
+import ContactInfoSection from "components/shared/ContactInfoSection";
 
 function AboutUsPage() {
   return (
@@ -10,6 +11,8 @@ function AboutUsPage() {
       />
 
       <AboutUsSection />
+      
+      <ContactInfoSection />
     </main>
   );
 }

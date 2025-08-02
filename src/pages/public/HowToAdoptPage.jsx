@@ -1,6 +1,7 @@
 import SectionTop from 'components/shared/SectionTop';
 import RequirementsSection from "components/shared/RequirementsSection";
 import AdoptionProcessSection from "components/shared/AdoptionProcessSection";
+import ContactInfoSection from "components/shared/ContactInfoSection";
 
 function HowToAdoptPage() {
   return (
@@ -13,6 +14,8 @@ function HowToAdoptPage() {
       <RequirementsSection/>
 
       <AdoptionProcessSection/>
+      
+      <ContactInfoSection/>
     </main>
   );
 }
