@@ -1,14 +1,14 @@
-import SectionTop from "../components/layout/SectionTop";
-import AwarenessSection from "../components/shared/AwarenessSection";
+import SectionTop from 'components/shared/SectionTop';
+import AwarenessSection from 'components/shared/AwarenessSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 function HomePage() {
   return (
-    <main className="flex flex-col gap-10">
+    <main className="main-container">
       <SectionTop>
         <h2 className="text-title uppercase">
-          Seu novo melhor amigo está te esperando. <br/>
+          Seu novo melhor amigo está te esperando. <br />
           <span className="text-accent">Adote!</span>
         </h2>
         <a href="#cards">
@@ -19,7 +19,7 @@ function HomePage() {
         </a>
       </SectionTop>
 
-      <AwarenessSection/>
+      <AwarenessSection />
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import SectionTitle from '../ui/SectionTitle';
+import SectionTitle from 'components/ui/SectionTitle';
 import InfoCard from "./InfoCard";
 import { faHeart, faShieldDog, faHandshake, faRibbon, faBullhorn } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,7 +14,7 @@ function AwarenessSection() {
     <section>
       <div className="flex flex-col items-center max-w-[1000px] m-auto p-5 lg:p-0">
         <SectionTitle icon={faBullhorn} title="Conscientização"/>
-        <div className="grid grid-flow-row gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {awarenessInfo.map((info, index) => (
             <InfoCard
               key={index}

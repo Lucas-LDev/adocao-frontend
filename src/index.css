@@ -15,4 +15,10 @@ html {
   .text-section {
     @apply text-xl md:text-3xl font-bold text-primary text-center;
   }
+  .main-container {
+    @apply flex flex-col gap-10 ;
+  }
+  .section-flex {
+    @apply flex flex-col items-center max-w-[1000px] m-auto p-5;
+  }
 }
