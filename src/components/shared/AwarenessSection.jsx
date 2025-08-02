@@ -12,7 +12,7 @@ const awarenessInfo = [
 function AwarenessSection() {
   return (
     <section>
-      <div className="flex flex-col items-center max-w-[1000px] m-auto p-5 lg:p-0">
+      <div className="flex flex-col items-center max-w-[1000px] m-auto p-3 lg:p-0 gap-5">
         <SectionTitle icon={faBullhorn} title="Conscientização"/>
         <div className="grid grid-cols-1 gap-4">
           {awarenessInfo.map((info, index) => (

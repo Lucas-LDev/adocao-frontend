@@ -8,7 +8,7 @@ const navLinks = [
   { to: '/', label: 'Página inicial' },
   { to: '/', label: 'Adotar' },
   { to: '/como-adotar', label: 'Como adotar' },
-  { to: '/', label: 'Sobre nós' },
+  { to: '/sobre-nos', label: 'Sobre nós' },
 ];
 
 const contactInfo = [

@@ -16,9 +16,9 @@ html {
     @apply text-xl md:text-3xl font-bold text-primary text-center;
   }
   .main-container {
-    @apply flex flex-col gap-10 ;
+    @apply flex flex-col gap-16;
   }
   .section-flex {
-    @apply flex flex-col items-center max-w-[1000px] m-auto p-5;
+    @apply flex flex-col items-center max-w-[1000px] m-auto p-3 lg:p-0 gap-5;
   }
 }

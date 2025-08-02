@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DefaultLayout from "components/layout/DefaultLayout";
 import HomePage from "pages/public/HomePage";
 import HowToAdoptPage from "pages/public/HowToAdoptPage";
+import AboutUsPage from "pages/public/AboutUsPage";
 
 
 const router = createBrowserRouter([
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
     children: [
       {path: '/', element: <HomePage />},
       {path: 'como-adotar', element: <HowToAdoptPage />},
+      {path: 'sobre-nos', element: <AboutUsPage />},
     ]
   }
 
