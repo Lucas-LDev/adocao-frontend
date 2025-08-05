@@ -1,6 +1,7 @@
 import SectionTop from 'components/shared/SectionTop';
 import AwarenessSection from 'components/shared/AwarenessSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PetListContainer from "components/shared/PetListContainer";
 import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 function HomePage() {
@@ -18,8 +19,11 @@ function HomePage() {
           />
         </a>
       </SectionTop>
+      
+      <PetListContainer limit={3} showViewAllButton={true} />
 
       <AwarenessSection />
+
     </main>
   );
 }

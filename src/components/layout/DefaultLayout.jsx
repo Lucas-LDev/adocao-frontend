@@ -1,6 +1,7 @@
 import Header from "../shared/Header";
 import Footer from "../shared/Footer";
 import { Outlet } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 function DefaultLayout() {
   return (
@@ -10,6 +11,11 @@ function DefaultLayout() {
         <Outlet />
       </main>
       <Footer />
+
+      <Toaster 
+        position="top-center"
+        reverseOrder={false}
+      />
     </div>
   );
 }
