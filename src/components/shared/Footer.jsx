@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const navLinks = [
   { to: '/', label: 'Página inicial' },
-  { to: '/', label: 'Adotar' },
+  { to: '/adotar', label: 'Adotar' },
   { to: '/como-adotar', label: 'Como adotar' },
   { to: '/sobre-nos', label: 'Sobre nós' },
 ];

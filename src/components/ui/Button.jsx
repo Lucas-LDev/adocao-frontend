@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 function Button({text, className, onClick, to = null, type = 'button', disabled = false }) {
-  const defaultStyle = "bg-accent hover:bg-primary text-white p-2 rounded-xl duration-300 font-medium";
+  const defaultStyle = "bg-accent hover:bg-primary text-white m-auto p-2 rounded-xl duration-300 font-medium";
   const finalClassname = `${defaultStyle} ${className}`;
   
   if (to) {

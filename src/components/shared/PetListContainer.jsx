@@ -17,33 +17,34 @@ function PetListContainer({
   sectionTitleIcon = faPaw,
   limit,
   showViewAllButton = false,
+  filters,
 }) {
-  const { pets, isLoading, error, isSlow } = usePets();
+  const { pets, isLoading, error, isSlow } = usePets(filters);
   useEffect(() => {
-    if (isSlow && isLoading) {
+    if (isSlow && isLoading ) {
       toast.error(
         'A conexão pode demorar um pouco, pois o servidor é gratuito. Por favor, aguarde...',
-        { duration: 15000 }
+        { duration: 10000, className: 'min-w-[200px] md:min-w-[500px]' }
       );
     }
   }, [isSlow, isLoading]);
 
   if (isLoading) {
     return (
-      <section className="flex flex-col items-center max-w-[1000px] m-auto p-3 lg:p-0 gap-5">
+      <div className="flex flex-col max-w-[1000px] gap-5">
         <SectionTitle title={sectionTitle} icon={sectionTitleIcon} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
           {Array.from({ length: 3 }).map((_, index) => (
             <PetCardSkeleton key={index} />
           ))}
         </div>
-      </section>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <section className="flex flex-col items-center max-w-[1000px] m-auto p-3 lg:p-0 gap-5">
+      <div className="flex flex-col max-w-[1000px] gap-5">
         <SectionTitle title={'Erro'} icon={faTriangleExclamation} />
         <p className="text-base md:text-lg text-justify text-red-500">
           Ops! Não conseguimos carregar os pets no momento. Tente atualizar a
@@ -51,20 +52,30 @@ function PetListContainer({
           abaixo.
         </p>
         <ContactInfoSection />
-      </section>
+      </div>
     );
   }
 
   return (
-    <section className="flex flex-col items-center max-w-[1000px] m-auto p-3 lg:p-0 gap-5">
-      <SectionTitle title="Conheça seu novo amigo" icon={faPaw} />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
-        {pets.slice(0, limit).map((animal) => (
-          <PetCard key={animal.id} pet={animal} />
-        ))}
+    <div className="flex flex-col max-w-[1000px] gap-5">
+      <SectionTitle title="Conheça seu novo amigo" icon={faPaw}/>
+      {pets.length > 0 ? (
+      <>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
+          {pets.slice(0, limit).map((animal) => (
+            <PetCard key={animal.id} pet={animal} />
+          ))}
+        </div>
+        {showViewAllButton && <Button to="/adotar" text="Ver todos os animais" />}
+      </>
+    ) : (
+      //in case no pets are found with the filters applied by the user
+      <div className="text-center max-w-[300px] lg:max-w-full mx-auto">
+        <p className="text-lg text-purple-600">Nenhum pet encontrado com essas características.</p>
+        <p className="text-md text-purple-400 mt-2">Tente alterar ou limpar os filtros para encontrar outros animais!</p>
       </div>
-      {showViewAllButton && <Button to="/" text="Ver todos os animais" />}
-    </section>
+    )}
+    </div>
   );
 }
 
@@ -73,6 +84,11 @@ PetListContainer.propTypes = {
   sectionTitleIcon: PropTypes.object,
   showViewAllButton: PropTypes.bool,
   limit: PropTypes.number,
+  filters: PropTypes.shape({
+    sex: PropTypes.string,
+    ageRange: PropTypes.string,
+    size: PropTypes.string,
+  }),
 };
 
 export default PetListContainer;

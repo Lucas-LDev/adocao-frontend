@@ -19,8 +19,11 @@ function HomePage() {
           />
         </a>
       </SectionTop>
+
+      <section className="section-flex">
+        <PetListContainer limit={3} showViewAllButton={true} />
+      </section>
       
-      <PetListContainer limit={3} showViewAllButton={true} />
 
       <AwarenessSection />
 

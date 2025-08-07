@@ -3,6 +3,7 @@ import DefaultLayout from "components/layout/DefaultLayout";
 import HomePage from "pages/public/HomePage";
 import HowToAdoptPage from "pages/public/HowToAdoptPage";
 import AboutUsPage from "pages/public/AboutUsPage";
+import AdoptPage from "pages/public/AdoptPage";
 
 
 const router = createBrowserRouter([
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       {path: '/', element: <HomePage />},
       {path: 'como-adotar', element: <HowToAdoptPage />},
       {path: 'sobre-nos', element: <AboutUsPage />},
+      {path: 'adotar', element: <AdoptPage />},
     ]
   }
 

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SectionTitle({ title, icon }) {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center">
       <div>
         <h2 className="text-section mb-1">
           <FontAwesomeIcon icon={icon} /> {title}
