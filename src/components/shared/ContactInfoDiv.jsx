@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -15,7 +16,7 @@ const contacts = [
   },
 ];
 
-function ContactInfoDiv() {
+function ContactInfoDiv({variant = 'normal'}) {
   return (
     <div className="flex flex-col bg-purple-gradient py-7 px-5 gap-4 rounded-2xl w-full items-center">
       <div className="flex justify-center items-center gap-2">
@@ -32,7 +33,7 @@ function ContactInfoDiv() {
           Ficou com alguma dúvida ou tem alguma sugestão? Entre em contato
           conosco:
         </p>
-        <div className="grid grid-flow-row md:grid-cols-2 gap-3 mt-4">
+        <div className={variant === 'normal' ? "grid grid-flow-row md:grid-cols-2 gap-3 mt-4" : "grid grid-flow-row gap-3 mt-4" }>
           {contacts.map((contact) => (
             <a
               key={contact.link}
@@ -53,5 +54,9 @@ function ContactInfoDiv() {
     </div>
   );
 }
+
+ContactInfoDiv.propTypes = {
+  variant: PropTypes.string,
+};
 
 export default ContactInfoDiv;

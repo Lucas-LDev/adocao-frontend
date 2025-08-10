@@ -32,7 +32,7 @@ function AdoptPage() {
             setSearchParams={setSearchParams}
           />
 
-          <PetListContainer filters={apiFilters} />
+          <PetListContainer filters={apiFilters} variant="display"/>
         </div>
       </section>
     </main>

@@ -21,7 +21,7 @@ function HomePage() {
       </SectionTop>
 
       <section className="section-flex">
-        <PetListContainer limit={3} showViewAllButton={true} />
+        <PetListContainer limit={3} showViewAllButton={true} variant="display"/>
       </section>
       
 

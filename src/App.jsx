@@ -4,6 +4,7 @@ import HomePage from "pages/public/HomePage";
 import HowToAdoptPage from "pages/public/HowToAdoptPage";
 import AboutUsPage from "pages/public/AboutUsPage";
 import AdoptPage from "pages/public/AdoptPage";
+import AdoptionFormPage from "pages/public/AdoptionFormPage";
 
 
 const router = createBrowserRouter([
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       {path: 'como-adotar', element: <HowToAdoptPage />},
       {path: 'sobre-nos', element: <AboutUsPage />},
       {path: 'adotar', element: <AdoptPage />},
+      {path: 'formulario-adocao/:id', element: <AdoptionFormPage />},
     ]
   }
 

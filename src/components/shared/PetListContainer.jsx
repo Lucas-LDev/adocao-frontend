@@ -18,6 +18,7 @@ function PetListContainer({
   limit,
   showViewAllButton = false,
   filters,
+  variant
 }) {
   const { pets, isLoading, error, isSlow } = usePets(filters);
   useEffect(() => {
@@ -63,7 +64,7 @@ function PetListContainer({
       <>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
           {pets.slice(0, limit).map((animal) => (
-            <PetCard key={animal.id} pet={animal} />
+            <PetCard key={animal.id} pet={animal} variant={variant} />
           ))}
         </div>
         {showViewAllButton && <Button to="/adotar" text="Ver todos os animais" />}
@@ -89,6 +90,7 @@ PetListContainer.propTypes = {
     ageRange: PropTypes.string,
     size: PropTypes.string,
   }),
+  variant: PropTypes.string,
 };
 
 export default PetListContainer;
