@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import FieldsetRadio from './FieldsetRadio';
-import ValidatedInput from './ValidatedInput';
+import FieldsetRadio from "components/ui/FieldsetRadio";
+import ValidatedInput from "components/ui/ValidatedInput";
 import SectionTitle from 'components/ui/SectionTitle';
 import Button from 'components/ui/Button';
 

@@ -1,9 +1,9 @@
-import Header from "../shared/Header";
-import Footer from "../shared/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 import { Toaster } from "react-hot-toast";
+import Header from "components/shared/Header";
+import Footer from "components/shared/Footer";
 
-function DefaultLayout() {
+function MinimalLayout() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -20,4 +20,4 @@ function DefaultLayout() {
   );
 }
 
-export default DefaultLayout;
+export default MinimalLayout;

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ValidatedRadio from './ValidatedRadio';
+import ValidatedRadio from "./ValidatedRadio";
 
 function FieldsetRadio({
   name,
