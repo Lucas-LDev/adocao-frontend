@@ -21,4 +21,10 @@ html {
   .section-flex {
     @apply flex flex-col items-center max-w-[1000px] m-auto p-3 lg:p-0 gap-5;
   }
+  .main-container-admin {
+    @apply mt-16;
+  }
+  .section-flex-admin {
+    @apply flex flex-col items-center max-w-[1200px] m-auto p-3 lg:p-0 gap-5;
+  }
 }

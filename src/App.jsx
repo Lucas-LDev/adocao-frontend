@@ -8,6 +8,7 @@ import AdoptPage from "pages/public/AdoptPage";
 import AdoptionFormPage from "pages/public/AdoptionFormPage";
 import CongratulationsPage from "pages/public/CongratulationsPage";
 import LoginAdmin from "pages/admin/LoginAdminPage";
+import AdminControlPanel from "pages/admin/AdminControlPanel";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
     element: <MinimalLayout />,
     children: [
       { path: "login-admin", element: <LoginAdmin /> },
+      { path: "control-panel", element: <AdminControlPanel/> }
     ],
   }
 ]);
