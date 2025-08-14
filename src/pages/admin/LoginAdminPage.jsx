@@ -3,7 +3,8 @@ import ValidatedInput from 'components/ui/ValidatedInput';
 import Button from 'components/ui/Button';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'context/AuthContext';
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function LoginAdmin() {
   const {
@@ -11,22 +12,22 @@ function LoginAdmin() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
+  const navigate = useNavigate();
 
   const { login } = useAuth();
 
-   const handleForgotPassword = () => {
-    toast(
-      "Para redefinir sua senha, entre em contato com a equipe técnica!",
-      {
-        className: 'bg-primary text-white rounded-lg shadow-lg',
-        duration: 6000,
-      }
-    );
+  const handleForgotPassword = () => {
+    toast('Para redefinir sua senha, entre em contato com a equipe técnica!', {
+      className: 'bg-primary text-white rounded-lg shadow-lg',
+      duration: 6000,
+    });
   };
 
   const onSubmit = async (data) => {
     try {
       await login(data);
+      toast.success('Login realizado com sucesso!');
+      navigate('/control-panel')
     } catch (error) {
       console.error('Failed to log in to your account:', error);
       toast.error('Usuário ou senha inválidos. Por favor, tente novamente.', {
@@ -59,14 +60,6 @@ function LoginAdmin() {
               errors={errors}
               validation={{
                 required: 'O email é obrigatório',
-                minLength: {
-                  value: 2,
-                  message: 'O email precisa ter pelo menos 2 caracteres.',
-                },
-                maxLength: {
-                  value: 60,
-                  message: 'O email pode conter no máximo 60 caracteres.',
-                }
               }}
             />
 
@@ -74,15 +67,11 @@ function LoginAdmin() {
               id={'password'}
               label={'Senha:'}
               type={'password'}
-              placeholder={'Crie uma senha'}
+              placeholder={'Digite sua senha'}
               register={register}
               errors={errors}
               validation={{
-                minLength: {
-                  value: 8,
-                  message: 'A senha deve ter no mínimo 8 caracteres.',
-                },
-                required: 'Digite sua senha.',
+                required: 'A senha é obrigatória',
               }}
             />
             <p>
