@@ -1,21 +1,11 @@
 import { SEXO_MAP, FAIXA_ETARIA_MAP, PORTE_MAP } from 'utils/mappings';
 import PropTypes from 'prop-types';
-import Button from 'components/ui/Button';
 
-function PetCard({ pet, variant }) {
+function PetCard({ pet, children }) {
   //pet mappings
   const sexDisplay = SEXO_MAP[pet.sex] || pet.sex;
   const ageRangeDisplay = FAIXA_ETARIA_MAP[pet.ageRange] || pet.ageRange;
   const sizeDisplay = PORTE_MAP[pet.size] || pet.size;
-
-  const renderVariant = (id, variant) => {
-    switch (variant) {
-      case 'display':
-        return (
-          <Button to={`/formulario-adocao/${id}`} text={'Adotar'} className={'w-full mt-auto'} />
-        )  
-    }
-  }
 
   return (
     <div className="rounded-2xl overflow-hidden max-w-[300px] text-center bg-white shadow hover:bg-secondary hover:shadow-md duration-300">
@@ -45,7 +35,7 @@ function PetCard({ pet, variant }) {
           </div>
         </div>
 
-        {renderVariant(pet.id, variant)}
+        {children}
       </div>
     </div>
   );
@@ -60,7 +50,7 @@ PetCard.propTypes = {
     sex: PropTypes.string.isRequired,
     size: PropTypes.string.isRequired,
   }).isRequired,
-  variant: PropTypes.string,
+  children: PropTypes.node.isRequired
 };
 
 export default PetCard;

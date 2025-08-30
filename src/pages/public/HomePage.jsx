@@ -1,8 +1,8 @@
 import SectionTop from 'components/shared/SectionTop';
 import AwarenessSection from 'components/shared/AwarenessSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PetListContainer from "components/shared/PetListContainer";
-import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
+import PetListContainer from 'components/shared/PetListContainer';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function HomePage() {
   return (
@@ -10,23 +10,22 @@ function HomePage() {
       <SectionTop>
         <h2 className="text-title uppercase">
           Seu novo melhor amigo está te esperando. <br />
-          <span className="text-accent">Adote!</span>
+          <span className="text-accent flex items-center justify-center gap-2">
+            Adote!
+            <FontAwesomeIcon icon={faHeart} className="text-3xl text-accent" />
+          </span>
         </h2>
-        <a href="#cards">
-          <FontAwesomeIcon
-            icon={faCircleDown}
-            className="text-4xl text-white animate-bounce duration-700 hover:text-accent"
-          />
-        </a>
       </SectionTop>
 
       <section className="section-flex">
-        <PetListContainer limit={3} showViewAllButton={true} variant="display"/>
+        <PetListContainer
+          limit={3}
+          showViewAllButton={true}
+          variant="display"
+        />
       </section>
-      
 
       <AwarenessSection />
-
     </main>
   );
 }

@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { usePets } from 'hooks/usePets';
+import { petService } from "services/petService";
+
 import PetCardSkeleton from './PetCardSkeleton';
 import PetCard from './PetCard';
 import SectionTitle from 'components/ui/SectionTitle';
@@ -11,21 +13,43 @@ import {
   faPaw,
   faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
+import AdoptButton from './actions/AdoptButton';
+import DeleteButton from "./actions/DeleteButton";
+import EditButton from "./actions/EditButton";
+
+const renderVariant = (variant) => {
+  switch (variant) {
+    case 'delete':
+      return (
+        <h3 className="text-center md:text-center font-semibold text-xl text-red-500 my-4">
+          Atenção!!! Qualquer ação aqui é irreversível. Portanto, tenha cuidado!
+        </h3>
+      );
+    case 'update': 
+      return (
+        <h3 className="text-center md:text-center font-semibold text-xl text-red-500 my-4">
+          Atenção!!! Cuidado para não atualizar algum dado errado.
+        </h3>
+      );
+    case 'display':
+      return <SectionTitle title="Conheça seu novo amigo" icon={faPaw} />;
+  }
+};
 
 function PetListContainer({
-  sectionTitle = 'Conheça seu novo amigo',
-  sectionTitleIcon = faPaw,
   limit,
   showViewAllButton = false,
   filters,
-  variant
+  variant,
 }) {
-  const { pets, isLoading, error, isSlow } = usePets(filters);
+  const { pets, setPets, isLoading, error, isSlow } = usePets(filters);
+
+
   useEffect(() => {
-    if (isSlow && isLoading ) {
-      toast.error(
-        'A conexão pode demorar um pouco, pois o servidor é gratuito. Por favor, aguarde...',
-        { duration: 10000, className: 'min-w-[200px] md:min-w-[500px]' }
+    if (isSlow && isLoading) {
+      toast(
+        'Conectando ao servidor... Esta operação pode demorar um pouco mais que o normal. Por favor, aguarde.',
+        { duration: 20000, className: 'min-w-[200px] md:min-w-[500px]' }
       );
     }
   }, [isSlow, isLoading]);
@@ -33,7 +57,7 @@ function PetListContainer({
   if (isLoading) {
     return (
       <div className="flex flex-col max-w-[1000px] gap-5">
-        <SectionTitle title={sectionTitle} icon={sectionTitleIcon} />
+        {renderVariant(variant)}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
           {Array.from({ length: 3 }).map((_, index) => (
             <PetCardSkeleton key={index} />
@@ -57,25 +81,47 @@ function PetListContainer({
     );
   }
 
+  const handleDeletePet = async (petId) => {
+    if (!window.confirm("Você tem certeza que deseja remover este pet? (É irreversível.)")) return;
+    try {
+      await petService.deletePet(petId);
+      setPets(currentPets => currentPets.filter(pet => pet.id !== petId));
+      alert('Pet removido com sucesso');
+    } catch (err) {
+      console.error("Erro ao remover pet:", err);
+      alert('Erro ao remover o pet.')
+    }
+  }
+
   return (
     <div className="flex flex-col max-w-[1000px] gap-5">
-      <SectionTitle title="Conheça seu novo amigo" icon={faPaw}/>
+      {renderVariant(variant)}
       {pets.length > 0 ? (
-      <>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
-          {pets.slice(0, limit).map((animal) => (
-            <PetCard key={animal.id} pet={animal} variant={variant} />
-          ))}
+        <>
+          <div className="grid m-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
+            {pets.slice(0, limit).map((animal) => (
+              <PetCard key={animal.id} pet={animal} variant={variant}>
+                {variant === 'display' && <AdoptButton petId={animal.id} />}
+                {variant === 'delete' && <DeleteButton petId={animal.id} onDelete={handleDeletePet} /> }
+                {variant === 'edit' && <EditButton petId={animal.id} onDelete={handleDeletePet} /> }
+              </PetCard>
+            ))}
+          </div>
+          {showViewAllButton && (
+            <Button to="/adotar" text="Ver todos os animais" />
+          )}
+        </>
+      ) : (
+        //in case no pets are found with the filters applied by the user
+        <div className="text-center max-w-[300px] lg:max-w-full mx-auto">
+          <p className="text-lg text-purple-600">
+            Nenhum pet encontrado com essas características.
+          </p>
+          <p className="text-md text-purple-500 mt-2">
+            Tente alterar ou limpar os filtros para encontrar outros animais!
+          </p>
         </div>
-        {showViewAllButton && <Button to="/adotar" text="Ver todos os animais" />}
-      </>
-    ) : (
-      //in case no pets are found with the filters applied by the user
-      <div className="text-center max-w-[300px] lg:max-w-full mx-auto">
-        <p className="text-lg text-purple-600">Nenhum pet encontrado com essas características.</p>
-        <p className="text-md text-purple-400 mt-2">Tente alterar ou limpar os filtros para encontrar outros animais!</p>
-      </div>
-    )}
+      )}
     </div>
   );
 }

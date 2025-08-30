@@ -7,6 +7,7 @@ import {
   faCirclePlus,
   faPen,
   faTrash,
+  faUserTie,
 } from '@fortawesome/free-solid-svg-icons';
 
 const adminOptions = [
@@ -15,14 +16,14 @@ const adminOptions = [
     title: 'Criar Pet',
     description: 'Adicione um novo pet ao centro de adoção.',
     label: 'Criar Pet',
-    to: '',
+    to: '/create-pet',
   },
   {
     icon: faPen,
     title: 'Editar Pet',
     description: 'Encontre um pet já cadastrado para editar suas informações.',
     label: 'Editar Pet',
-    to: '',
+    to: '/edit-pets',
   },
   {
     icon: faCheckCircle,
@@ -38,7 +39,7 @@ const adminOptions = [
     description:
       'Remova permanentemente um pet do sistema. Esta ação é irreversível.',
     label: 'Remover Pet',
-    to: '',
+    to: '/delete-pets',
   },
 ];
 
@@ -47,7 +48,7 @@ function AdminControlPanel() {
     <main className="main-container-admin">
       <section className="section-flex-admin">
         <div className="flex flex-col items-center bg-white shadow rounded-xl p-7 lg:p-10">
-          <SectionTitle title="Olá, Admin. O que você gostaria de fazer?" />
+          <SectionTitle title="Olá, Admin. O que você gostaria de fazer?" icon={faUserTie}/>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
             {adminOptions.map((option) => (

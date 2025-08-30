@@ -23,12 +23,11 @@ function FieldsetRadio({
             register={register}
             validation={
               index === 0 ? validation : {}
-            } /* def9ne validation only on the first radio button */
+            }
           />
         ))}
       </div>
 
-      {/* if errosr */}
       {errors[name] && (
         <p className="text-red-500 text-sm mt-1">{errors[name].message}</p>
       )}

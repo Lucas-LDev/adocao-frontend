@@ -9,11 +9,14 @@ import AdoptionFormPage from "pages/public/AdoptionFormPage";
 import CongratulationsPage from "pages/public/CongratulationsPage";
 import LoginAdmin from "pages/admin/LoginAdminPage";
 import AdminControlPanel from "pages/admin/AdminControlPanel";
-
+import ProtectedRoute from "components/shared/ProtectedRoute";
+import DeletePetPage from "pages/admin/DeletePetPage";
+import CreatePetPage from "pages/admin/CreatePetPage";
+import UpdatePetPage from "pages/admin/UpdatePetPage";
+import PetEditorPage from "pages/admin/PetEditorPage";
 
 const router = createBrowserRouter([
   {
-    //public routes
     element: <DefaultLayout />,
     children: [
       {path: '/', element: <HomePage />},
@@ -25,11 +28,24 @@ const router = createBrowserRouter([
     ]
   },
   {
-    //public routes with minimal layout 
     element: <MinimalLayout />,
     children: [
       { path: "login-admin", element: <LoginAdmin /> },
-      { path: "control-panel", element: <AdminControlPanel/> }
+    ],
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
+      {
+        element: <MinimalLayout />,
+        children: [
+          { path: "control-panel", element: <AdminControlPanel/> },
+          { path: "delete-pets", element: <DeletePetPage /> },
+          { path: "create-pet", element: <CreatePetPage /> },
+          { path: "edit-pets", element: <UpdatePetPage /> },
+          { path: "editor-pet/:petId", element: <PetEditorPage /> },
+        ],
+      },
     ],
   }
 ]);
