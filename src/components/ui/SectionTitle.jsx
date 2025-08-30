@@ -16,7 +16,7 @@ function SectionTitle({ title, icon, className }) {
 
 SectionTitle.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.object.isRequired,
   className: PropTypes.string,
 };
 

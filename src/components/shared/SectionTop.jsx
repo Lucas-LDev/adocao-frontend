@@ -7,10 +7,10 @@ function SectionTop({title, quote, children}) {
         <h2 className="text-title text-accent">
           {title}
         </h2>
+        {children}
         <p className='text-white text-lg font-medium max-w-[900px] text-justify'>
           {quote}
         </p>
-        {children}
       </div>
     </section>
   );

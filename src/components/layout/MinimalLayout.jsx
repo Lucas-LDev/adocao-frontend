@@ -6,7 +6,7 @@ import Footer from "components/shared/Footer";
 function MinimalLayout() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header variant="minimal"/>
       <main className="flex-1">
         <Outlet />
       </main>

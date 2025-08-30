@@ -39,7 +39,7 @@ const nextSteps = [
     icon: faHouseChimneyUser,
     title: 'Adoção',
     quote:
-      'A partir da etapa anterior, você se torna o tutor definitivo do cão, podendo levá-lo para seu novo lar no mesmo dia ou agendar uma data para buscá-lo.',
+      'A partir desta etapa você se torna o tutor definitivo do cão, podendo levá-lo para seu novo lar no mesmo dia ou agendar uma data para buscá-lo.',
   },
 ];
 

@@ -55,7 +55,7 @@ function FooterSection({ title, children, className = '' }) {
 }
 FooterSection.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.string,
+  children: PropTypes.object,
   className: PropTypes.string,
 };
 
@@ -71,7 +71,6 @@ function Footer() {
         </p>
       </div>
 
-      {/*main container with navigation, contact and social media links.*/}
       <div className="flex flex-col md:flex-row justify-center gap-12 md:gap-20 lg:gap-28 w-full max-w-6xl py-10">
         <FooterSection title="Navegação:">
           <nav>

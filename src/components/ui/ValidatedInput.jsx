@@ -26,7 +26,7 @@ const ValidatedInput = forwardRef(
           {...props}
           {...register(id, validation)}
         />
-        {/* if errors */}
+        
         {errors[id] && (
           <p className="text-red-500 text-sm mt-1">{errors[id].message}</p>
         )}

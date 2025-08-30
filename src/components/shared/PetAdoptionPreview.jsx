@@ -12,8 +12,8 @@ function PetAdoptionPreview({ petId }) {
 
   useEffect(() => {
     if (isSlow && isLoading) {
-      toast.error(
-        'A conexão pode demorar um pouco, pois o servidor é gratuito. Por favor, aguarde...',
+      toast(
+        'Conectando ao servidor... Esta operação pode demorar um pouco mais que o normal. Por favor, aguarde.',
         { duration: 10000, className: 'min-w-[200px] md:min-w-[500px]' }
       );
     }
@@ -49,7 +49,7 @@ function PetAdoptionPreview({ petId }) {
           Erro ao carregar os dados do animal. Tente recarregar a página, se o
           error persistir, entre em contato conosco.
         </p>
-        <ContactInfoDiv  variant="col"/>
+        <ContactInfoDiv variant="col" />
       </div>
     );
   }

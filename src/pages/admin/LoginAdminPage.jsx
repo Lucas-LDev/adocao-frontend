@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from 'context/AuthContext';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 function LoginAdmin() {
   const {
@@ -39,9 +40,9 @@ function LoginAdmin() {
 
   return (
     <main>
-      <section>
+      <section className="section-flex">
         <div className="flex flex-col max-w-[500px] m-auto justify-center bg-white rounded-xl mt-16 p-10 gap-4 shadow">
-          <SectionTitle title="Acesso administrativo" />
+          <SectionTitle title="Acesso administrativo" icon={faLock} />
           <h3 className="text-justify">
             Use suas credenciais de acesso para acessar o painel de
             configurações.
