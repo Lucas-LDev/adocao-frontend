@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 import { usePets } from 'hooks/usePets';
-import { petService } from "services/petService";
+import { petService } from 'services/petService';
 
 import PetCardSkeleton from './PetCardSkeleton';
 import PetCard from './PetCard';
@@ -14,8 +14,9 @@ import {
   faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import AdoptButton from './actions/AdoptButton';
-import DeleteButton from "./actions/DeleteButton";
-import EditButton from "./actions/EditButton";
+import DeleteButton from './actions/DeleteButton';
+import EditButton from './actions/EditButton';
+import AvailabilityButton from './actions/AvailabilityButton';
 
 const renderVariant = (variant) => {
   switch (variant) {
@@ -25,7 +26,8 @@ const renderVariant = (variant) => {
           Atenção!!! Qualquer ação aqui é irreversível. Portanto, tenha cuidado!
         </h3>
       );
-    case 'update': 
+    case 'update':
+    case 'availability':
       return (
         <h3 className="text-center md:text-center font-semibold text-xl text-red-500 my-4">
           Atenção!!! Cuidado para não atualizar algum dado errado.
@@ -44,12 +46,11 @@ function PetListContainer({
 }) {
   const { pets, setPets, isLoading, error, isSlow } = usePets(filters);
 
-
   useEffect(() => {
     if (isSlow && isLoading) {
       toast(
         'Conectando ao servidor... Esta operação pode demorar um pouco mais que o normal. Por favor, aguarde.',
-        { duration: 20000, className: 'min-w-[200px] md:min-w-[500px]' }
+        { duration: 10000, className: 'min-w-[200px] md:min-w-[500px]' }
       );
     }
   }, [isSlow, isLoading]);
@@ -82,16 +83,40 @@ function PetListContainer({
   }
 
   const handleDeletePet = async (petId) => {
-    if (!window.confirm("Você tem certeza que deseja remover este pet? (É irreversível.)")) return;
+    if (
+      !window.confirm(
+        'Você tem certeza que deseja remover este pet? (É irreversível.)'
+      )
+    )
+      return;
     try {
       await petService.deletePet(petId);
-      setPets(currentPets => currentPets.filter(pet => pet.id !== petId));
+      setPets((currentPets) => currentPets.filter((pet) => pet.id !== petId));
       alert('Pet removido com sucesso');
     } catch (err) {
-      console.error("Erro ao remover pet:", err);
-      alert('Erro ao remover o pet.')
+      console.error('Erro ao remover pet:', err);
+      alert('Erro ao remover o pet.');
     }
-  }
+  };
+
+  const handleToggleAvailability = async (petId) => {
+    if (
+      !window.confirm('Você tem certeza que deseja mudar o status deste pet?')
+    )
+      return;
+    try {
+      await petService.toggleAvailability(petId);
+      setPets((currentPets) =>
+        currentPets.map((pet) =>
+          pet.id === petId ? { ...pet, isAvailable: !pet.isAvailable } : pet
+        )
+      );
+      alert('Status do pet atualizado com sucesso.');
+    } catch (err) {
+      console.error('Erro ao atualizar o status do pet:', err);
+      alert('Erro ao atualizar o status do pet.');
+    }
+  };
 
   return (
     <div className="flex flex-col max-w-[1000px] gap-5">
@@ -101,9 +126,19 @@ function PetListContainer({
           <div className="grid m-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-7">
             {pets.slice(0, limit).map((animal) => (
               <PetCard key={animal.id} pet={animal} variant={variant}>
-                {variant === 'display' && <AdoptButton petId={animal.id} />}
-                {variant === 'delete' && <DeleteButton petId={animal.id} onDelete={handleDeletePet} /> }
-                {variant === 'edit' && <EditButton petId={animal.id} onDelete={handleDeletePet} /> }
+                {variant === 'display' && <AdoptButton petId={animal.id} available={animal.isAvailable}/>}
+                {variant === 'delete' && (
+                  <DeleteButton petId={animal.id} onDelete={handleDeletePet} />
+                )}
+                {variant === 'edit' && (
+                  <EditButton petId={animal.id} />
+                )}
+                {variant === 'availability' && (
+                  <AvailabilityButton
+                    available={animal.isAvailable}
+                    onToggle={() => handleToggleAvailability(animal.id)}
+                  />
+                )}
               </PetCard>
             ))}
           </div>

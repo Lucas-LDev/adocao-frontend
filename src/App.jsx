@@ -14,6 +14,7 @@ import DeletePetPage from "pages/admin/DeletePetPage";
 import CreatePetPage from "pages/admin/CreatePetPage";
 import UpdatePetPage from "pages/admin/UpdatePetPage";
 import PetEditorPage from "pages/admin/PetEditorPage";
+import PetAvailabilityPage from "pages/admin/PetAvailabilityPage";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
           { path: "create-pet", element: <CreatePetPage /> },
           { path: "edit-pets", element: <UpdatePetPage /> },
           { path: "editor-pet/:petId", element: <PetEditorPage /> },
+          { path: "availability", element: <PetAvailabilityPage /> },
         ],
       },
     ],

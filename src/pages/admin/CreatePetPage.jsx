@@ -36,6 +36,7 @@ export default function CreatePetPage() {
     imgUrl: watchedValues.imgUrl,
     ageRange: watchedValues.ageRange,
     size: watchedValues.size,
+    isAvailable: true
   };
 
   return (

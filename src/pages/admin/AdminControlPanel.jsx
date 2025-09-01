@@ -31,7 +31,7 @@ const adminOptions = [
     description:
       'Marque um pet como adotado ou torne-o disponível para adoção novamente.',
     label: 'Gerenciar status',
-    to: '',
+    to: '/availability',
   },
   {
     icon: faTrash,

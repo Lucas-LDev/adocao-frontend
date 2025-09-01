@@ -14,6 +14,11 @@ const updatePet = async (petId, data) => {
   return response.data;
 }
 
+const toggleAvailability = async (petId) => {
+  const response = await api.patch(`/pets/${petId}/availability`);
+  return response.data;
+}
+
 export const petService = {
-  createPet, deletePet, updatePet,
+  createPet, deletePet, updatePet, toggleAvailability
 };

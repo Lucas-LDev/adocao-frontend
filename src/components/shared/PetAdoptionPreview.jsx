@@ -6,9 +6,11 @@ import SectionTitle from 'components/ui/SectionTitle';
 import ContactInfoDiv from './ContactInfoDiv';
 import { faBone } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function PetAdoptionPreview({ petId }) {
   const { pet, isLoading, error, isSlow } = usePet(petId);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isSlow && isLoading) {
@@ -18,6 +20,13 @@ function PetAdoptionPreview({ petId }) {
       );
     }
   }, [isSlow, isLoading]);
+
+  useEffect(() => {
+    if (pet && pet.isAvailable === false) {
+      navigate('/');
+      toast.error('Este animal não está disponível para adoção.');
+    }
+  }, [pet, navigate]);
 
   if (isLoading) {
     return (

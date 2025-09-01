@@ -53,7 +53,7 @@ function LoginAdmin() {
             className="flex flex-col gap-4"
           >
             <ValidatedInput
-              id={'username'}
+              id={'email'}
               label={'Email:'}
               type={'text'}
               placeholder={'Digite seu email'}

@@ -68,8 +68,8 @@ export default function PetEditorPage() {
             isSubmitting={isSubmitting}
           />
           <PetCard pet={previewPet}>
-            <div className="text-center py-2 bg-yellow-50 rounded-xl">
-              <span className="text-yellow-600 font-bold text-lg">
+            <div className="text-center py-2 bg-sky-100 rounded-xl">
+              <span className="text-sky-500 font-bold text-lg">
                 Pet a ser atualizado
               </span>
             </div>

@@ -18,7 +18,15 @@ function PetCard({ pet, children }) {
       </div>
       <div className="p-3">
         <h3 className="font-bold text-xl text-primary">{pet.name}</h3>
-        <p className="text-sm text-purple-500">Disponível para adoção</p>
+        <p
+          className={`text-sm ${
+            pet.isAvailable === true
+              ? 'text-purple-500'
+              : 'text-red-500'
+          }`}
+        >{`${
+          pet.isAvailable === true ? 'Disponível para adoção' : 'Indisponível'
+        }`}</p>
 
         <div className="grid grid-cols-3 my-6 gap-2">
           <div className="py-2 flex flex-col bg-purple-50 rounded-xl text-sm">
@@ -49,8 +57,9 @@ PetCard.propTypes = {
     ageRange: PropTypes.string.isRequired,
     sex: PropTypes.string.isRequired,
     size: PropTypes.string.isRequired,
+    isAvailable: PropTypes.bool.isRequired,
   }).isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default PetCard;
