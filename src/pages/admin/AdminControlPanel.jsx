@@ -27,10 +27,9 @@ const adminOptions = [
   },
   {
     icon: faCheckCircle,
-    title: 'Gerenciar Status de Adoção',
-    description:
-      'Marque um pet como adotado ou torne-o disponível para adoção novamente.',
-    label: 'Gerenciar status',
+    title: 'Alterar disponibilidade do pet',
+    description: 'Marque o pet como disponível ou indisponível para adoção.',
+    label: 'Alterar disponibilidade',
     to: '/availability',
   },
   {
@@ -43,18 +42,21 @@ const adminOptions = [
   },
 ];
 
-function AdminControlPanel() {
+export default function AdminControlPanel() {
   return (
     <main className="main-container-admin">
       <section className="section-flex-admin">
         <div className="flex flex-col items-center bg-white shadow rounded-xl p-7 lg:p-10">
-          <SectionTitle title="Olá, Admin. O que você gostaria de fazer?" icon={faUserTie}/>
+          <SectionTitle
+            title="Olá, Admin. O que você gostaria de fazer?"
+            icon={faUserTie}
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
             {adminOptions.map((option) => (
               <div
                 key={option.title}
-                className="border-2 rounded-xl flex flex-col p-4 items-center text-center gap-7 bg-white hover:bg-purple-400 duration-300 hover:shadow"
+                className="border-2 rounded-xl flex flex-col p-4 items-center text-center gap-7 bg-white hover:bg-purple-200 duration-300 hover:shadow"
               >
                 <div className="h-20 w-20 p-2 bg-secondary flex items-center justify-center rounded-full border">
                   <FontAwesomeIcon
@@ -79,5 +81,3 @@ function AdminControlPanel() {
     </main>
   );
 }
-
-export default AdminControlPanel;

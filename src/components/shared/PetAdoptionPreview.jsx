@@ -7,6 +7,8 @@ import ContactInfoDiv from './ContactInfoDiv';
 import { faBone } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function PetAdoptionPreview({ petId }) {
   const { pet, isLoading, error, isSlow } = usePet(petId);
@@ -14,10 +16,15 @@ function PetAdoptionPreview({ petId }) {
 
   useEffect(() => {
     if (isSlow && isLoading) {
-      toast(
-        'Conectando ao servidor... Esta operação pode demorar um pouco mais que o normal. Por favor, aguarde.',
-        { duration: 10000, className: 'min-w-[200px] md:min-w-[500px]' }
+      const uniqueToast = toast.loading(
+        'Conectando ao servidor... Esta operação pode demorar um pouco. Por favor, aguarde.',
+        {
+          className: 'min-w-[200px] md:min-w-[400px] border-2 border-primary',
+          position: 'bottom-right',
+          icon: <FontAwesomeIcon icon={faSpinner} spin />,
+        }
       );
+      return () => toast.dismiss(uniqueToast);
     }
   }, [isSlow, isLoading]);
 

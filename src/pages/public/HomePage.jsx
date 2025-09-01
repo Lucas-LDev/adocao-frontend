@@ -1,8 +1,8 @@
 import SectionTop from 'components/shared/SectionTop';
 import AwarenessSection from 'components/shared/AwarenessSection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PetListContainer from 'components/shared/PetListContainer';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import PublicPetList from "components/shared/PublicPetList";
 
 function HomePage() {
   return (
@@ -18,10 +18,9 @@ function HomePage() {
       </SectionTop>
 
       <section className="section-flex">
-        <PetListContainer
+        <PublicPetList
           limit={3}
           showViewAllButton={true}
-          variant="display"
         />
       </section>
 

@@ -26,13 +26,8 @@ const router = createBrowserRouter([
       {path: 'adotar', element: <AdoptPage />},
       {path: 'formulario-adocao/:id', element: <AdoptionFormPage />},
       {path: 'parabens', element: <CongratulationsPage />},
-    ]
-  },
-  {
-    element: <MinimalLayout />,
-    children: [
       { path: "login-admin", element: <LoginAdmin /> },
-    ],
+    ]
   },
   {
     element: <ProtectedRoute />,

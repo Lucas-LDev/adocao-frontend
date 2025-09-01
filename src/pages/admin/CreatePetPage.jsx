@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { petService } from 'services/petService';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
+import dogPlaceholder from 'assets/svgs/dog.svg';
 
 export default function CreatePetPage() {
   const {
@@ -33,7 +34,7 @@ export default function CreatePetPage() {
     id: 'id',
     name: watchedValues.name,
     sex: watchedValues.sex,
-    imgUrl: watchedValues.imgUrl,
+    imgUrl: watchedValues.imgUrl || dogPlaceholder,
     ageRange: watchedValues.ageRange,
     size: watchedValues.size,
     isAvailable: true

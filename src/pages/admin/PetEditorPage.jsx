@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faUpload } from '@fortawesome/free-solid-svg-icons';
 import SectionTitle from 'components/ui/SectionTitle';
 import PetCard from 'components/shared/PetCard';
+import toast from "react-hot-toast";
 
 export default function PetEditorPage() {
   const { petId } = useParams();
   const { pet, isLoading, error } = usePet(petId);
+  
 
   const {
     register,
@@ -32,10 +34,10 @@ export default function PetEditorPage() {
       return;
     try {
       await petService.updatePet(petId, formData);
-      alert('Pet atualizado com sucesso!');
+      toast.success('Pet atualizado com sucesso!');
     } catch (err) {
       console.error('Erro ao atualizar pet:', err);
-      alert('Falha ao atualizar o pet!');
+      toast.error('Falha ao atualizar o pet!');
     }
   };
 
@@ -48,7 +50,8 @@ export default function PetEditorPage() {
         <section className="section-flex-admin">
           <FontAwesomeIcon
             icon={faSpinner}
-            className="text-4xl text-black animate-spin"
+            spin
+            className="text-6xl text-black"
           />
         </section>
       </main>

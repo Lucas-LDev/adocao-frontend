@@ -1,7 +1,7 @@
 import SectionTop from 'components/shared/SectionTop';
-import PetListContainer from 'components/shared/PetListContainer';
 import PetFilter from 'components/shared/PetFilter';
 import { useSearchParams } from 'react-router-dom';
+import PublicPetList from "components/shared/PublicPetList";
 
 function AdoptPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,7 +32,7 @@ function AdoptPage() {
             setSearchParams={setSearchParams}
           />
 
-          <PetListContainer filters={apiFilters} variant="display"/>
+          <PublicPetList filters={apiFilters}/>
         </div>
       </section>
     </main>
